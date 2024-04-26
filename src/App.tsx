@@ -1,5 +1,11 @@
+import NavigationBar from "./components/NavigationBar";
+
 function App() {
-  return <div className="container">missions-hub</div>;
+  return (
+    <>
+      <NavigationBar />
+    </>
+  );
 }
 
 export default App;
