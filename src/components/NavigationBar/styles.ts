@@ -12,14 +12,20 @@ export default styled.div`
     align-items: center;
 
     .logo {
-      width: 54px;
-      margin-right: 16px;
-    }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-    h1 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #3c4242;
+      img {
+        width: 54px;
+        margin-right: 16px;
+      }
+
+      h1 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #3c4242;
+      }
     }
 
     .nav-menu {

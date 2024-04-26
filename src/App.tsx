@@ -7,17 +7,15 @@ import About from "./components/About";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <NavigationBar />
       <section className="container">
-        <BrowserRouter>
-          <Routes>
-            <Route path={RoutesConfig.home} element={<Home />} />
-            <Route path={RoutesConfig.about} element={<About />} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path={RoutesConfig.home} element={<Home />} />
+          <Route path={RoutesConfig.about} element={<About />} />
+        </Routes>
       </section>
-    </>
+    </BrowserRouter>
   );
 }
 
