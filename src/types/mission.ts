@@ -1,0 +1,5 @@
+export enum MISSION_STATUS {
+    IN_PROGRESS = "IN_PROGRESS",
+    COMPLETED = "COMPLETED",
+    UPCOMING = "UPCOMING",
+};

@@ -1,24 +1,28 @@
-import styled from "styled-components";
-const StyledMissionCard = styled.div``;
+import { MISSION_STATUS } from "../../types/mission";
+import StyledMissionCard from "./styles";
 
 interface Props {
-  mission: {
-    name: string;
-    manufacturer: string;
-    image: string;
-    desc: string;
-    status: string;
-  };
+  name: string;
+  manufacturer: string;
+  image: string;
+  desc: string;
+  status: MISSION_STATUS;
 }
 
-const MissionCard = ({ mission: { name, manufacturer, image, desc, status } }: Props) => {
+const MISSION_STATUS_LABELS = {
+  [MISSION_STATUS.IN_PROGRESS]: "In progress",
+  [MISSION_STATUS.COMPLETED]: "Completed",
+  [MISSION_STATUS.UPCOMING]: "Upcoming",
+};
+
+const MissionCard = ({ name, manufacturer, image, desc, status }: Props) => {
   return (
     <StyledMissionCard>
       <img src={image} />
       <div className="mission-details">
         <div className="title-wrap">
           <span className="title">{name}</span>
-          <span className="status">{status}</span>
+          <span className={`status ${[status?.toLowerCase()]}`}>{MISSION_STATUS_LABELS[status]}</span>
         </div>
         <div className="manufacturer">{manufacturer}</div>
         <div className="desc">{desc}</div>

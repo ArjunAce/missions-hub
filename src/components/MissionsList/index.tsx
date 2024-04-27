@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import missionsData from "./missions-mock-data.json";
 import MissionCard from "../MissionCard";
+import { MISSION_STATUS } from "../../types/mission";
 
 const StyledMissionsList = styled.div`
   width: 100%;
@@ -11,6 +12,11 @@ const StyledMissionsList = styled.div`
     font-weight: 600;
     color: #3f4646;
     margin-bottom: 32px;
+  }
+
+  .list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
   }
 `;
 
@@ -23,13 +29,11 @@ const MissionsList = () => {
         {data.map(mission => (
           <MissionCard
             key={mission.id}
-            mission={{
-              name: mission.name,
-              image: mission.image,
-              manufacturer: mission.manufacturers[0],
-              status: mission.status,
-              desc: mission.shortDescription,
-            }}
+            name={mission.name}
+            image={mission.image}
+            manufacturer={mission.manufacturers[0]}
+            status={mission.status as MISSION_STATUS}
+            desc={mission.shortDescription}
           />
         ))}
       </div>
