@@ -48,6 +48,12 @@ svg {
   display: inline-block;
 }
 
+body,
+#root,
+main {
+  height: 100%;
+}
+
 .container {
   width: 100%;
   max-width: 1280px;

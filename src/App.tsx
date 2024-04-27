@@ -9,12 +9,12 @@ function App() {
   return (
     <BrowserRouter>
       <NavigationBar />
-      <section className="container">
+      <main className="container">
         <Routes>
           <Route path={RoutesConfig.home} element={<Home />} />
           <Route path={RoutesConfig.about} element={<About />} />
         </Routes>
-      </section>
+      </main>
     </BrowserRouter>
   );
 }
