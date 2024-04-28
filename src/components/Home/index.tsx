@@ -14,7 +14,7 @@ const StyledHome = styled.div`
 
 const Home = props => {
   return (
-    <StyledHome className="home-container">
+    <StyledHome className="container home-container">
       <Filters />
       <MissionsList />
     </StyledHome>

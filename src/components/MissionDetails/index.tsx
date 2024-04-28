@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import StyledDetailsWrapper from "./styles";
 interface Mission {
   id: number;
   name: string;
   description: string;
 }
 
-const MissionDetails: React.FC = () => {
+const MissionDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [mission, setMission] = useState<Mission | null>(null);
 
@@ -42,13 +42,33 @@ const MissionDetails: React.FC = () => {
   return (
     <div>
       {mission ? (
-        <>
-          <h2>Mission Details</h2>
-          <p>ID: {mission.id}</p>
-          <p>Name: {mission.name}</p>
-          <p>Description: {mission.description}</p>
-          {/* Render other mission details here */}
-        </>
+        <StyledDetailsWrapper>
+          <div className="hero-image-bg">
+            <div className="overlay"></div>
+            <div className="container key-details">
+              <h1>TelSat 1240</h1>
+              <h3>NASA</h3>
+              <div className="details-wrapper">
+                <div className="detail">
+                  <span className="label">Launch date</span>
+                  <span className="value">24th January 2022</span>
+                </div>
+                <div className="detail">
+                  <span className="label">Status</span>
+                  <span className="value">In progress</span>
+                </div>
+                <div className="detail">
+                  <span className="label">Duration</span>
+                  <span className="value">1 year and 7 months</span>
+                </div>
+                <div className="detail">
+                  <span className="label">Current location</span>
+                  <span className="value">Low Earth Orbit</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </StyledDetailsWrapper>
       ) : (
         <p>Loading...</p>
       )}

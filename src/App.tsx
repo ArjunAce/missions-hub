@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavigationBar />
-      <main className="container">
+      <main>
         <Routes>
           <Route path={RoutesConfig.missions} element={<Home />} />
           <Route path={RoutesConfig.mission} element={<MissionDetails />} />
