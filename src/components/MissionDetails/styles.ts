@@ -58,7 +58,6 @@ export default styled.section`
 
     .details-wrapper {
       font-size: 18px;
-      font-weight: 500;
       color: #cdcdcd;
 
       .detail {
@@ -69,6 +68,33 @@ export default styled.section`
         width: 160px;
         display: inline-block;
       }
+    }
+  }
+`;
+
+export const StyledDescription = styled.section`
+  padding: 40px 0;
+
+  .desc-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: normal;
+    color: #1b1b1b;
+    margin-bottom: 12px;
+  }
+
+  .description-wrap {
+    p {
+      font-size: 16px;
+      color: #6b6b6b;
+      margin-bottom: 16px;
+    }
+
+    img {
+      width: 500px;
+      height: 500px;
+      display: block;
+      margin: 0 auto 32px;
     }
   }
 `;
