@@ -2,7 +2,7 @@
     {
         "name": "Thaicom",
         "id": "9D1B7E0",
-        "image": "./src/assets/missions/missions-1.png",
+        "image": "./src/assets/missions/missions-1.jpg",
         "manufacturers": [
             "Orbital ATK"
         ],
@@ -13,7 +13,7 @@
     {
         "name": "Telstar",
         "id": "F4F83DE",
-        "image": "./src/assets/missions/missions-2.png",
+        "image": "./src/assets/missions/missions-2.jpg",
         "manufacturers": [
             "SSL"
         ],
@@ -24,7 +24,7 @@
     {
         "name": "Iridium NEXT",
         "id": "F3364BF",
-        "image": "./src/assets/missions/missions-3.png",
+        "image": "./src/assets/missions/missions-3.jpg",
         "manufacturers": [
             "Orbital ATK"
         ],
@@ -35,7 +35,7 @@
     {
         "name": "Commercial Resupply Services",
         "id": "EE86F74",
-        "image": "./src/assets/missions/missions-4.png",
+        "image": "./src/assets/missions/missions-4.jpg",
         "manufacturers": [
             "SpaceX"
         ],
@@ -46,7 +46,7 @@
     {
         "name": "SES",
         "id": "6C42550",
-        "image": "./src/assets/missions/missions-5.png",
+        "image": "./src/assets/missions/missions-5.jpg",
         "manufacturers": [
             "Orbital ATK",
             "Boeing",
@@ -59,7 +59,7 @@
     {
         "name": "JCSAT",
         "id": "FE3533D",
-        "image": "./src/assets/missions/missions-6.png",
+        "image": "./src/assets/missions/missions-6.jpg",
         "manufacturers": [
             "SSL"
         ],
@@ -70,7 +70,7 @@
     {
         "name": "AsiaSat",
         "id": "593B499",
-        "image": "./src/assets/missions/missions-7.png",
+        "image": "./src/assets/missions/missions-7.jpg",
         "manufacturers": [
             "SSL"
         ],
@@ -81,7 +81,7 @@
     {
         "name": "Orbcomm OG2",
         "id": "CE91D46",
-        "image": "./src/assets/missions/missions-8.png",
+        "image": "./src/assets/missions/missions-8.jpg",
         "manufacturers": [
             "Sierra Nevada Corporation"
         ],
@@ -92,7 +92,7 @@
     {
         "name": "ABS",
         "id": "2CF444A",
-        "image": "./src/assets/missions/missions-9.png",
+        "image": "./src/assets/missions/missions-9.jpg",
         "manufacturers": [
             "Boeing"
         ],
@@ -103,7 +103,7 @@
     {
         "name": "Eutelsat",
         "id": "F7709F2",
-        "image": "./src/assets/missions/missions-10.png",
+        "image": "./src/assets/missions/missions-10.jpg",
         "manufacturers": [
             "Boeing"
         ],
