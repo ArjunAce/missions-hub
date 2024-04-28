@@ -29,6 +29,7 @@ const MissionsList = () => {
         {data.map(mission => (
           <MissionCard
             key={mission.id}
+            id={mission.id}
             name={mission.name}
             image={mission.image}
             manufacturer={mission.manufacturers[0]}

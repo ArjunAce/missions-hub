@@ -1,4 +1,6 @@
 export default {
   home: "/",
-  about: "about",
+  missions: "/missions",
+  mission: "/mission/:id",
+  about: "/about",
 };
