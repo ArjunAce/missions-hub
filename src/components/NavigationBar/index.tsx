@@ -7,10 +7,10 @@ const NavigationBar = props => {
   return (
     <StyledNavBar>
       <div className="container navigation-container">
-        <a href="#home" className="logo">
+        <Link className="logo" to={RoutesConfig.home}>
           <img src={logo} alt="Missions Hub Logo" />
           <h1>missions-hub</h1>
-        </a>
+        </Link>
         <nav role="navigation" className="nav-menu">
           <Link to={RoutesConfig.home}>Home</Link>
           <Link to={RoutesConfig.about}>About</Link>
