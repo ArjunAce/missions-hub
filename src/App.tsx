@@ -18,6 +18,14 @@ function App() {
           <Route path={RoutesConfig.home} element={<Navigate to={RoutesConfig.missions} />} />
         </Routes>
       </main>
+      <footer className="container">
+        <p>
+          &copy; {new Date().getFullYear()} missions-hub | Made with ❤️ by{" "}
+          <a href="https://github.com/ArjunAce" target="_blank">
+            Arjun
+          </a>
+        </p>
+      </footer>
     </BrowserRouter>
   );
 }
