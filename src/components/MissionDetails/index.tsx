@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import StyledDetailsWrapper from "./styles";
+import routesConfig from "../../config/routes.config";
+
 interface Mission {
   id: number;
   name: string;
@@ -45,6 +47,9 @@ const MissionDetails = () => {
         <StyledDetailsWrapper>
           <div className="hero-image-bg">
             <div className="overlay"></div>
+            <div className="container back-container">
+              <Link to={routesConfig.missions}></Link>
+            </div>
             <div className="container key-details">
               <h1>TelSat 1240</h1>
               <h3>NASA</h3>

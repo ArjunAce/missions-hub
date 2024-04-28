@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import bgImg from "../../assets/background/bg-2.jpg";
+import backImg from "../../assets/back.svg";
 
 export default styled.section`
   .hero-image-bg {
     height: 460px;
     position: relative;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: end;
     background-image: url(${bgImg});
     background-size: cover;
@@ -22,6 +25,19 @@ export default styled.section`
       background-color: black;
       opacity: 0.7;
     }
+
+    .back-container {
+      position: relative;
+
+      a {
+        width: 20px;
+        height: 20px;
+        display: block;
+        background-image: url(${backImg});
+        background-size: cover;
+      }
+    }
+
     .key-details {
       z-index: 1;
     }
