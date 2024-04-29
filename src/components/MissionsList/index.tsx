@@ -6,6 +6,8 @@ import StyledMissionsList from "./styles";
 
 const MissionsList = () => {
   const [data, setData] = useState<Mission[]>([]);
+  const [loading, seLoading] = useState<boolean>(true);
+
   const db = useContext(DatabaseContext)!;
 
   useEffect(() => {
@@ -13,7 +15,6 @@ const MissionsList = () => {
       try {
         if (db) {
           const missions = await db.getAllMissions();
-          console.log("missions", missions);
           setData(missions);
         }
       } catch (error) {

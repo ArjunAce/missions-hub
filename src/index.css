@@ -51,6 +51,7 @@ svg {
 body,
 #root {
   height: 100%;
+  background-color: #f8fefe;
 }
 main {
   min-height: calc(100% - 78px - 20px);
