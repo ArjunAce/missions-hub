@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import bgImg from "../../assets/background/bg-2.jpg";
 import backImg from "../../assets/back.svg";
 
-export default styled.section`
+export default styled.section<{ bgImg: string }>`
   .hero-image-bg {
     height: 460px;
     position: relative;
@@ -10,7 +9,7 @@ export default styled.section`
     flex-direction: column;
     justify-content: space-between;
     align-items: end;
-    background-image: url(${bgImg});
+    background-image: url(${({ bgImg }) => bgImg});
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;

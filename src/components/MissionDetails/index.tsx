@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import missionImage from "../../assets/missions/missions-13.jpg";
 import { MISSION_STATUS_LABELS } from "../../config/constants";
 import routesConfig from "../../config/routes.config";
 import { Mission } from "../../types/mission";
@@ -52,7 +51,7 @@ const MissionDetails = () => {
 
   return mission ? (
     <>
-      <StyledDetailsWrapper>
+      <StyledDetailsWrapper bgImg={mission.heroImage}>
         <div className="hero-image-bg">
           <div className="overlay"></div>
           <div className="container back-container">
@@ -78,7 +77,7 @@ const MissionDetails = () => {
           {mission.descFirstHalf.map((p, index) => (
             <p key={index}>{p}</p>
           ))}
-          <img src={missionImage} alt="mission image" />
+          <img src={mission.missionImages[0]} alt="mission image" />
           {mission.descSecondHalf.map((p, index) => (
             <p key={index}>{p}</p>
           ))}
