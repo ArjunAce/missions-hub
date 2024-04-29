@@ -1,46 +1,54 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import StyledDetailsWrapper, { StyledDescription } from "./styles";
-import routesConfig from "../../config/routes.config";
-import missionImage from "../../assets/missions/missions-13.jpg";
 
-interface Mission {
-  id: number;
-  name: string;
-  description: string;
-}
+import missionImage from "../../assets/missions/missions-13.jpg";
+import { MISSION_STATUS_LABELS } from "../../config/constants";
+import routesConfig from "../../config/routes.config";
+import { Mission } from "../../types/mission";
+import { DatabaseContext } from "../Contexts/Database";
+import StyledDetailsWrapper, { StyledDescription } from "./styles";
 
 const MissionDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [mission, setMission] = useState<Mission | null>(null);
+  const db = useContext(DatabaseContext)!;
 
   useEffect(() => {
-    const fetchMission = async () => {
+    const getMissionDetails = async () => {
       try {
-        const response = await fetch("api.missions.com/mission", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ missionId: id }),
-        });
-        if (!response.ok) {
-          throw new Error("Failed to fetch mission details");
+        if (db && id) {
+          const mission = await db.getMissionById(id);
+          setMission(mission);
         }
-        const data = await response.json();
-        setMission(data);
       } catch (error) {
-        setMission({
-          id: 123,
-          name: "Mission name here",
-          description: "some desc here",
+        setMission(() => {
+          throw error;
         });
-        console.error("Error fetching mission details:", error);
       }
     };
+    getMissionDetails();
+  }, [db, id]);
 
-    fetchMission();
-  }, [id]);
+  const keyDetails = mission
+    ? [
+        {
+          label: "Launch date",
+          value: "24th January 2022",
+        },
+        {
+          label: "Status",
+          value: MISSION_STATUS_LABELS[mission.status],
+        },
+        {
+          label: "Duration",
+          value: "1 year and 7 months",
+        },
+        {
+          label: "Current location",
+          value: "Low Earth Orbit",
+        },
+      ]
+    : [];
 
   return mission ? (
     <>
@@ -51,59 +59,29 @@ const MissionDetails = () => {
             <Link to={routesConfig.missions}></Link>
           </div>
           <div className="container key-details">
-            <h1>TelSat 1240</h1>
-            <h3>NASA</h3>
+            <h1>{mission.name}</h1>
+            <h3>{mission.manufacturer}</h3>
             <div className="details-wrapper">
-              <div className="detail">
-                <span className="label">Launch date</span>
-                <span className="value">24th January 2022</span>
-              </div>
-              <div className="detail">
-                <span className="label">Status</span>
-                <span className="value">In progress</span>
-              </div>
-              <div className="detail">
-                <span className="label">Duration</span>
-                <span className="value">1 year and 7 months</span>
-              </div>
-              <div className="detail">
-                <span className="label">Current location</span>
-                <span className="value">Low Earth Orbit</span>
-              </div>
+              {keyDetails.map(({ label, value }, index) => (
+                <div className="detail" key={index}>
+                  <span className="label">{label}</span>
+                  <span className="value">{value}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </StyledDetailsWrapper>
       <StyledDescription className="container">
-        <div className="desc-title">TelSat 1240 In depth</div>
+        <div className="desc-title">{mission.name} in depth</div>
         <div className="description-wrap">
-          <p>
-            On March 27, 1958, the U.S. Department of Defense announced the launch of four to five lunar probes later in
-            the year, all under the supervision of the Advanced Research Projects Agency (ARPA) as part of scientific
-            investigations during the International Geophysical Year.
-          </p>
-          <p>
-            Of these, one or two (later confirmed as two) would be carried out by the Army’s Ballistic Missile Agency
-            and the other three by the Air Force’s Ballistic Missile Division. This launch was the first of three Air
-            Force attempts, and the first attempted deep space launch by any country.
-          </p>
+          {mission.descFirstHalf.map((p, index) => (
+            <p key={index}>{p}</p>
+          ))}
           <img src={missionImage} alt="mission image" />
-          <p>
-            The Able 1 spacecraft, a squat conical fiberglass structure built by Space Technology Laboratories (STL),
-            carried a crude infrared TV scanner. The simple thermal radiation device carried a small parabolic mirror
-            for focusing reflected light from the lunar surface onto a cell that would transmit voltage proportional to
-            the light it received. Engineers painted a pattern of dark and light stripes on the spacecraft’s outer
-            surface to regulate internal temperature. The spacecraft was also disinfected with ultraviolet light prior
-            to launch.
-          </p>
-          <p>
-            The launch vehicle was a three-stage variant of the Thor intermediate-range ballistic missile (IRBM) with
-            elements appropriated from the Vanguard rocket used on its second and third stages.
-          </p>
-          <p>
-            The entire project involved 3,000 people from 52 scientific and industrial firms, all but six of which firms
-            were located in Southern California.
-          </p>
+          {mission.descSecondHalf.map((p, index) => (
+            <p key={index}>{p}</p>
+          ))}
         </div>
       </StyledDescription>
     </>

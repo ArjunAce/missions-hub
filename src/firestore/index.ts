@@ -1,5 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { Firestore, WhereFilterOp, collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import {
+  Firestore,
+  WhereFilterOp,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 import { Mission } from "../types/mission";
 
 class FirestoreService {
@@ -35,6 +45,21 @@ class FirestoreService {
       return data;
     } catch (error) {
       console.error("Error reading data:", error);
+      throw error;
+    }
+  }
+  async getMissionById(id: string): Promise<Mission> {
+    try {
+      const docRef = doc(this.db, this.COLLECTION_NAME, id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        return docSnap.data() as Mission;
+      } else {
+        throw new Error("Mission not found");
+      }
+    } catch (error) {
+      console.error("Error fetching mission details:", error);
       throw error;
     }
   }

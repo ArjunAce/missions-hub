@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { MISSION_STATUS } from "../../types/mission";
-import StyledMissionCard from "./styles";
+import { MISSION_STATUS_LABELS } from "../../config/constants";
 import routesConfig from "../../config/routes.config";
+import { MISSION_STATUS } from "../../types/mission";
 import { createURL } from "../../utils";
+import StyledMissionCard from "./styles";
 
 interface Props {
   id: string;
@@ -12,12 +13,6 @@ interface Props {
   desc: string;
   status: MISSION_STATUS;
 }
-
-const MISSION_STATUS_LABELS = {
-  [MISSION_STATUS.IN_PROGRESS]: "In progress",
-  [MISSION_STATUS.COMPLETED]: "Completed",
-  [MISSION_STATUS.UPCOMING]: "Upcoming",
-};
 
 const MissionCard = ({ id, name, manufacturer, image, desc, status }: Props) => {
   return (

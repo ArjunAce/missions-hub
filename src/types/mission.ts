@@ -10,6 +10,7 @@ export type Mission = {
   manufacturer: string;
   image: string;
   heroImage: string;
+  missionImages: string[];
   launchYear: string;
   status: MISSION_STATUS;
   shortDescription: string;
