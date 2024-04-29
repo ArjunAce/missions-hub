@@ -18,7 +18,11 @@ const MissionsList = () => {
           setData(missions);
         }
       } catch (error) {
-        console.log("Error while getting all missions data", error);
+        // Handle async code errors
+        // https://github.com/facebook/react/issues/14981#issuecomment-468460187
+        setData(() => {
+          throw error;
+        });
       }
     };
     getAllMissions();

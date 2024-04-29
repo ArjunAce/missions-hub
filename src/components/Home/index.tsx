@@ -1,6 +1,5 @@
-import { useState } from "react";
 import styled from "styled-components";
-import Error from "../Error";
+import ErrorBoundary from "../ErrorBoundary";
 import Filters from "../Filters";
 import MissionsList from "../MissionsList";
 
@@ -15,17 +14,12 @@ const StyledHome = styled.div`
 `;
 
 const Home = props => {
-  const [error, setError] = useState<boolean>(true);
-
   return (
     <StyledHome className="container home-container">
-      {error && <Error />}
-      {!error && (
-        <>
-          <Filters />
-          <MissionsList />
-        </>
-      )}
+      <ErrorBoundary>
+        <Filters />
+        <MissionsList />
+      </ErrorBoundary>
     </StyledHome>
   );
 };
