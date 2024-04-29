@@ -1,7 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components";
 import ErrorBoundary from "../ErrorBoundary";
 import Filters from "../Filters";
 import MissionsList from "../MissionsList";
+import Skeleton from "./Skeleton";
 
 const StyledHome = styled.div`
   height: 100%;
@@ -14,11 +16,14 @@ const StyledHome = styled.div`
 `;
 
 const Home = props => {
+  const [loading, seLoading] = useState<boolean>(true);
+
   return (
     <StyledHome className="container home-container">
+      {loading && <Skeleton />}
       <ErrorBoundary>
-        <Filters />
-        <MissionsList />
+        <Filters loading={loading} />
+        <MissionsList loading={loading} setLoading={seLoading} />
       </ErrorBoundary>
     </StyledHome>
   );

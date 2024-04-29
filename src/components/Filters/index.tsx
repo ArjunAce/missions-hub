@@ -6,8 +6,8 @@ const StyledFilters = styled.div`
   background-color: lightblue;
 `;
 
-const Filters = () => {
-  return <StyledFilters>Filters</StyledFilters>;
+const Filters = ({ loading }: { loading: boolean }) => {
+  return !loading && <StyledFilters>Filters</StyledFilters>;
 };
 
 export default Filters;
