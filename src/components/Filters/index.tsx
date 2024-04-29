@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SearchInput from "../SearchInput";
+import SearchInput from "./SearchInput";
 
 const StyledFilters = styled.div`
   min-width: 288px;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledInput = styled.div`
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 
   .search-icon {
     width: 16px;
