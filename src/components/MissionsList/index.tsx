@@ -1,24 +1,7 @@
-import styled from "styled-components";
 import missionsData from "./missions-mock-data.json";
 import MissionCard from "../MissionCard";
 import { MISSION_STATUS } from "../../types/mission";
-
-const StyledMissionsList = styled.div`
-  width: 100%;
-  padding: 32px 24px;
-
-  .list-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: #3f4646;
-    margin-bottom: 32px;
-  }
-
-  .list-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-  }
-`;
+import StyledMissionsList from "./styles";
 
 const MissionsList = () => {
   const data = missionsData;
