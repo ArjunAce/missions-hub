@@ -5,19 +5,23 @@ import NavigationBar from "./components/NavigationBar";
 import Home from "./components/Home";
 import About from "./components/About";
 import MissionDetails from "./components/MissionDetails";
+import DatabaseProvider from "./components/Contexts/Database";
 
 function App() {
   return (
     <BrowserRouter>
       <NavigationBar />
-      <main>
-        <Routes>
-          <Route path={RoutesConfig.missions} element={<Home />} />
-          <Route path={RoutesConfig.mission} element={<MissionDetails />} />
-          <Route path={RoutesConfig.about} element={<About />} />
-          <Route path={RoutesConfig.home} element={<Navigate to={RoutesConfig.missions} />} />
-        </Routes>
-      </main>
+      <DatabaseProvider>
+        <main>
+          <Routes>
+            <Route path={RoutesConfig.missions} element={<Home />} />
+            <Route path={RoutesConfig.mission} element={<MissionDetails />} />
+            <Route path={RoutesConfig.about} element={<About />} />
+            <Route path={RoutesConfig.home} element={<Navigate to={RoutesConfig.missions} />} />
+          </Routes>
+        </main>
+      </DatabaseProvider>
+
       <footer className="container">
         <p>
           &copy; {new Date().getFullYear()} missions-hub | Made with ❤️ by{" "}
