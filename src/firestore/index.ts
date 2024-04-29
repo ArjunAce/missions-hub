@@ -39,7 +39,6 @@ class FirestoreService {
       const querySnapshot = await getDocs(collection(this.db, this.COLLECTION_NAME));
       const data: Mission[] = [];
       querySnapshot.forEach(doc => {
-        console.log(doc.id, " => ", doc.data());
         data.push(doc.data() as Mission);
       });
       return data;
