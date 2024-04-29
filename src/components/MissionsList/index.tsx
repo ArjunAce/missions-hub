@@ -1,12 +1,11 @@
-import { useContext, useEffect } from "react";
-import { MISSION_STATUS } from "../../types/mission";
+import { useContext, useEffect, useState } from "react";
+import { MISSION_STATUS, Mission } from "../../types/mission";
 import { DatabaseContext } from "../Contexts/Database";
 import MissionCard from "../MissionCard";
-import missionsData from "./missions-mock-data.json";
 import StyledMissionsList from "./styles";
 
 const MissionsList = () => {
-  const data = missionsData;
+  const [data, setData] = useState<Mission[]>([]);
   const db = useContext(DatabaseContext)!;
 
   useEffect(() => {
@@ -15,6 +14,7 @@ const MissionsList = () => {
         if (db) {
           const missions = await db.getAllMissions();
           console.log("missions", missions);
+          setData(missions);
         }
       } catch (error) {
         console.log("Error while getting all missions data", error);
@@ -33,7 +33,7 @@ const MissionsList = () => {
             id={mission.id}
             name={mission.name}
             image={mission.image}
-            manufacturer={mission.manufacturers[0]}
+            manufacturer={mission.manufacturer}
             status={mission.status as MISSION_STATUS}
             desc={mission.shortDescription}
           />

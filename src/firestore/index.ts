@@ -1,15 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { Firestore, WhereFilterOp, collection, getDocs, getFirestore, query, where } from "firebase/firestore";
-
-type Mission = {
-  id: string;
-  name: string;
-  organization: string;
-  launchYear: string;
-  status: string;
-  shortDesc: string;
-  detailedDesc: string[];
-};
+import { Mission } from "../types/mission";
 
 class FirestoreService {
   private db: Firestore;
