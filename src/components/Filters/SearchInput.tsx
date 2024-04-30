@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import styled from "styled-components";
-import { encodeParams, getURLParams } from "../../utils";
+import { decodeParams, encodeParams } from "../../utils";
 
 const StyledInput = styled.div`
   position: relative;
@@ -33,22 +33,20 @@ const StyledInput = styled.div`
   }
 `;
 const SearchInput = () => {
-  const [query, updateQuery] = useState<string>("");
-  const navigate = useNavigate();
   const { pathname, search } = useLocation();
-  const queryParams = new URLSearchParams(search);
+  const queryParams = decodeParams(search);
+
+  const [query, updateQuery] = useState<string>((queryParams.query as string) || "");
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Debouncing URL update
     const timerId = setTimeout(() => {
-      const params = getURLParams(queryParams);
+      queryParams.query = query;
       if (!query) {
-        delete params["query"];
-      } else {
-        params["query"] = query;
+        delete queryParams.query;
       }
-      const newUrl = pathname + encodeParams(params);
-      navigate(newUrl);
+      navigate(pathname + encodeParams(queryParams));
     }, 500);
     return () => clearTimeout(timerId);
   }, [query]);
