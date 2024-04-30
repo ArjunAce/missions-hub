@@ -1,5 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router";
 import { MISSION_STATUS, Mission } from "../../types/mission";
+import { decodeParams } from "../../utils";
 import { DatabaseContext } from "../Contexts/Database";
 import MissionCard from "../MissionCard";
 import StyledMissionsList from "./styles";
@@ -7,13 +9,22 @@ import StyledMissionsList from "./styles";
 const MissionsList = ({ loading, setLoading }: { loading: boolean; setLoading: Function }) => {
   const [data, setData] = useState<Mission[]>([]);
   const db = useContext(DatabaseContext)!;
+  const { search } = useLocation();
+  const queryParams = useMemo(() => decodeParams(search), [search]);
 
   useEffect(() => {
     const getAllMissions = async () => {
       try {
         if (db) {
-          const missions = await db.getAllMissions();
-          setData(missions);
+          let missions = null;
+
+          if (queryParams) {
+            const firestoreFilter = db.getFirestoreFiltersFromParams(queryParams);
+            missions = await db.getFilteredMissions(firestoreFilter);
+          } else {
+            missions = await db.getAllMissions();
+          }
+          setData(missions || []);
           setLoading(false);
         }
       } catch (error) {
@@ -26,7 +37,7 @@ const MissionsList = ({ loading, setLoading }: { loading: boolean; setLoading: F
       }
     };
     getAllMissions();
-  }, [db]);
+  }, [db, queryParams]);
 
   return (
     !loading && (

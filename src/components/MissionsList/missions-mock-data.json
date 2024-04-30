@@ -57,7 +57,7 @@
         "longDescription": "SES S.A. is a communications satellite owner and operator providing video and data connectivity worldwide to broadcasters, content and internet service providers, mobile and fixed network operators, governments and institutions, with a mission to “connect, enable, and enrich”. SES operates more than 50 geostationary orbit satellites and 16 medium Earth orbit satellites. These comprise the well-known European Astra TV satellites, the O3b data satellites and others with names including AMC, Ciel, NSS, Quetzsat, YahSat and SES."
     },
     {
-        "name": "JCSAT",
+        "name": "Telstar 720",
         "id": "FE3533D",
         "image": "./src/assets/missions/missions-6.jpg",
         "manufacturers": [

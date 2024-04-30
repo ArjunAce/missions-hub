@@ -11,6 +11,13 @@ import {
   where,
 } from "firebase/firestore";
 import { Mission } from "../types/mission";
+import { Params } from "../utils";
+
+type FirestoreFilters = {
+  field: string;
+  operator: WhereFilterOp;
+  value: any;
+}[];
 
 class FirestoreService {
   private db: Firestore;
@@ -64,10 +71,12 @@ class FirestoreService {
     }
   }
 
-  async readDataWithFilter(filters: { field: string; operator: WhereFilterOp; value: any }[]): Promise<Mission[]> {
+  async getFilteredMissions(filters: FirestoreFilters): Promise<Mission[]> {
     try {
-      const { field, operator, value } = filters[0];
-      const q = query(collection(this.db, this.COLLECTION_NAME), where(field, operator, value));
+      const q = query(
+        collection(this.db, this.COLLECTION_NAME),
+        ...filters.map(filter => where(filter.field, filter.operator, filter.value))
+      );
       const querySnapshot = await getDocs(q);
       const data: Mission[] = [];
       querySnapshot.forEach(doc => {
@@ -80,6 +89,33 @@ class FirestoreService {
       throw error;
     }
   }
+
+  getFirestoreFiltersFromParams = (queryParams: Params): FirestoreFilters => {
+    const filters: FirestoreFilters = [];
+    if (queryParams.query) {
+      const query = queryParams.query as string;
+      filters.push({
+        field: "name",
+        operator: ">=" as WhereFilterOp,
+        value: query,
+      });
+      filters.push({
+        field: "name",
+        operator: "<" as WhereFilterOp,
+        value: query.slice(0, -1) + String.fromCharCode(query.slice(-1).charCodeAt(0) + 1),
+      });
+    }
+    // @ts-expect-error
+    const status: { [key: number]: string } = queryParams?.filters?.status;
+    if (status) {
+      filters.push({
+        field: "status",
+        operator: "in" as WhereFilterOp,
+        value: Object.values(status),
+      });
+    }
+    return filters;
+  };
 }
 
 export default FirestoreService;
