@@ -13,7 +13,8 @@ const MissionsList = ({ loading, setLoading }: { loading: boolean; setLoading: F
   const queryParams = useMemo(() => decodeParams(search), [search]);
 
   useEffect(() => {
-    const getAllMissions = async () => {
+    const getMissionsList = async () => {
+      setLoading(true);
       try {
         if (db) {
           let missions = null;
@@ -36,7 +37,7 @@ const MissionsList = ({ loading, setLoading }: { loading: boolean; setLoading: F
         });
       }
     };
-    getAllMissions();
+    getMissionsList();
   }, [db, queryParams]);
 
   return (
