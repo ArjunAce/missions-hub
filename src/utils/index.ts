@@ -14,7 +14,7 @@ export const createURL = (route: string, params: { [key: string]: string }): str
 
 type ParamsValue = string | number | boolean | Params | ParamsValue[];
 
-interface Params {
+export interface Params {
   [key: string]: ParamsValue;
 }
 
