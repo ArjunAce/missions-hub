@@ -42,8 +42,8 @@ const SearchInput = () => {
   useEffect(() => {
     // Debouncing URL update
     const timerId = setTimeout(() => {
-      queryParams.query = query;
-      if (!query) {
+      queryParams.query = query.trim();
+      if (!query.trim()) {
         delete queryParams.query;
       }
       navigate(pathname + encodeParams(queryParams));
@@ -54,7 +54,7 @@ const SearchInput = () => {
   return (
     <StyledInput className="search-wrapper">
       <span className="search-icon"></span>
-      <input placeholder="Search missions" value={query} onChange={e => updateQuery(e.target.value)} />
+      <input placeholder="Search missions" value={query} onChange={e => updateQuery(e.target.value.trimStart())} />
     </StyledInput>
   );
 };
