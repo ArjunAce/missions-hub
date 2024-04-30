@@ -23,11 +23,12 @@ type StatusFilter = {
 };
 
 const getStatusFilters = (queryParams: Params): StatusFilter => {
-  const defaultStatus = Object.entries(MISSION_STATUS_LABELS).reduce((acc: StatusFilter, [key]) => {
-    acc[key] = false;
+  // @ts-expect-error
+  const status: string[] = queryParams?.filters?.status;
+  return Object.entries(MISSION_STATUS_LABELS).reduce((acc: StatusFilter, [key]) => {
+    acc[key] = status ? Object.values(status).includes(key) : false;
     return acc;
   }, {});
-  return queryParams?.filters?.status || defaultStatus;
 };
 
 const StatusFilter = () => {
@@ -40,8 +41,16 @@ const StatusFilter = () => {
     // Debouncing URL update
     const timerId = setTimeout(() => {
       queryParams.filters = queryParams.filters || {};
-      // @ts-expect-error
-      queryParams.filters.status = statusFilters;
+      const updatedStatus = Object.entries(statusFilters)
+        .filter(([_, checked]) => checked)
+        .map(([filterName]) => filterName);
+      if (!updatedStatus.length) {
+        // @ts-expect-error
+        delete queryParams.filters.status;
+      } else {
+        // @ts-expect-error
+        queryParams.filters.status = updatedStatus;
+      }
       navigate(pathname + encodeParams(queryParams));
     }, 500);
     return () => clearTimeout(timerId);
