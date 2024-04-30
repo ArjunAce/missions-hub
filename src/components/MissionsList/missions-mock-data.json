@@ -90,7 +90,7 @@
         "longDescription": "Orbcomm Generation 2 (OG2) second-generation satellites are intended to supplement and eventually replace the current first generation constellation. Eighteen satellites were ordered by 2008—nominally intended to be launched in three groups of six during 2010–2014—and by 2015 have all been launched, on three flights. Orbcomm has options for a further thirty OG2 spacecraft. The satellites were launched by SpaceX on the Falcon 9 launch system. Originally, they were to launch on the smaller Falcon 1e rocket."
     },
     {
-        "name": "ABS",
+        "name": "Thaicom",
         "id": "2CF444A",
         "image": "./src/assets/missions/missions-9.jpg",
         "manufacturers": [

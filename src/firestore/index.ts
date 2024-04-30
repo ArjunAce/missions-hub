@@ -80,7 +80,6 @@ class FirestoreService {
       const querySnapshot = await getDocs(q);
       const data: Mission[] = [];
       querySnapshot.forEach(doc => {
-        console.log(doc.id, " => ", doc.data());
         data.push(doc.data() as Mission);
       });
       return data;
@@ -93,7 +92,7 @@ class FirestoreService {
   getFirestoreFiltersFromParams = (queryParams: Params): FirestoreFilters => {
     const filters: FirestoreFilters = [];
     if (queryParams.query) {
-      const query = queryParams.query as string;
+      const query = String(queryParams.query);
       filters.push({
         field: "name",
         operator: ">=" as WhereFilterOp,

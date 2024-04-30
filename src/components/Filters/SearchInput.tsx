@@ -42,8 +42,9 @@ const SearchInput = () => {
   useEffect(() => {
     // Debouncing URL update
     const timerId = setTimeout(() => {
-      queryParams.query = query.trim();
-      if (!query.trim()) {
+      const trimmedQuery = String(query).trim();
+      queryParams.query = trimmedQuery;
+      if (!trimmedQuery) {
         delete queryParams.query;
       }
       navigate(pathname + encodeParams(queryParams));

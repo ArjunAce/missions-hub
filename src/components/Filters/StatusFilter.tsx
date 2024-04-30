@@ -47,6 +47,9 @@ const StatusFilter = () => {
       if (!updatedStatus.length) {
         // @ts-expect-error
         delete queryParams.filters.status;
+        if (!Object.keys(queryParams.filters).length) {
+          delete queryParams.filters;
+        }
       } else {
         // @ts-expect-error
         queryParams.filters.status = updatedStatus;
