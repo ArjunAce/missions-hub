@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import styled from "styled-components";
+import { encodeParams, getURLParams } from "../../utils";
 
 const StyledInput = styled.div`
   position: relative;
@@ -30,10 +33,30 @@ const StyledInput = styled.div`
   }
 `;
 const SearchInput = () => {
+  const [query, updateQuery] = useState<string>("");
+  const navigate = useNavigate();
+  const { pathname, search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+
+  useEffect(() => {
+    // Debouncing URL update
+    const timerId = setTimeout(() => {
+      const params = getURLParams(queryParams);
+      if (!query) {
+        delete params["query"];
+      } else {
+        params["query"] = query;
+      }
+      const newUrl = pathname + encodeParams(params);
+      navigate(newUrl);
+    }, 500);
+    return () => clearTimeout(timerId);
+  }, [query]);
+
   return (
     <StyledInput className="search-wrapper">
       <span className="search-icon"></span>
-      <input placeholder="Search missions" />
+      <input placeholder="Search missions" value={query} onChange={e => updateQuery(e.target.value)} />
     </StyledInput>
   );
 };
