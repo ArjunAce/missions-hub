@@ -46,4 +46,36 @@ export default styled.div`
       }
     }
   }
+
+  @media (max-width: 767px) {
+    min-height: 38px;
+
+    .navigation-container {
+      padding: 12px;
+      justify-content: space-between;
+
+      .logo {
+        img {
+          width: 32px;
+          margin-right: 12px;
+        }
+
+        h1 {
+          font-size: 18px;
+        }
+      }
+
+      .nav-menu {
+        margin-left: 0;
+
+        a {
+          font-size: 16px;
+
+          + a {
+            margin-left: 24px;
+          }
+        }
+      }
+    }
+  }
 `;
