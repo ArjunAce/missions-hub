@@ -16,6 +16,22 @@ const StyledStatusFilter = styled.div`
     color: #777777;
     margin-bottom: 2px;
   }
+
+  @media (max-width: 767px) {
+    .statuses {
+      max-width: 390px;
+      display: flex;
+      justify-content: space-between;
+
+      .status {
+        margin-bottom: 0;
+
+        label {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
 `;
 
 type StatusFilter = {

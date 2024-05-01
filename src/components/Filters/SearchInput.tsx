@@ -31,6 +31,18 @@ const StyledInput = styled.div`
     background-color: #f6f6f6;
     padding: 4px 12px 4px 40px;
   }
+
+  @media (max-width: 767px) {
+    margin-bottom: 12px;
+
+    .search-icon {
+      height: 36px;
+    }
+
+    input {
+      height: 36px;
+    }
+  }
 `;
 const SearchInput = () => {
   const { pathname, search } = useLocation();

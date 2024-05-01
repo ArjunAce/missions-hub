@@ -16,6 +16,18 @@ const StyledFilters = styled.div`
     padding-bottom: 8px;
     margin-bottom: 12px;
   }
+
+  @media (max-width: 767px) {
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #bebcbd;
+    padding: 16px 0;
+
+    .filter-title {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+  }
 `;
 
 const Filters = ({ loading }: { loading: boolean }) => {

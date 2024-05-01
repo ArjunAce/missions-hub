@@ -51,7 +51,7 @@ export default styled.header`
     min-height: 38px;
 
     .navigation-container {
-      padding: 12px;
+      padding: 12px 16px;
       justify-content: space-between;
 
       .logo {

@@ -64,6 +64,12 @@ main {
   margin: 0 auto;
 }
 
+@media (max-width: 767px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
 footer p {
   text-align: center;
 }
