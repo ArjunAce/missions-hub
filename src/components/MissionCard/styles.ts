@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const desktopCardWidth = `calc((100vw - 32px) / 2 - 10px)`;
+const desktopCardWidth = "280px";
 const mobileCardWidth = `calc((100vw - 32px) / 2 - 10px)`;
 
 export default styled.div`
@@ -92,11 +92,8 @@ export default styled.div`
   @media (max-width: 767px) {
     min-width: ${mobileCardWidth};
     max-width: ${mobileCardWidth};
-    height: 360px;
-
-    &:not(:nth-child(3n)) {
-      margin-right: 0;
-    }
+    height: 490px;
+    max-height: 490px;
 
     &:not(:nth-child(2n)) {
       margin-right: 20px;
@@ -116,5 +113,17 @@ export default styled.div`
     .desc {
       font-size: 12px;
     }
+  }
+
+  @media (max-width: 650px) {
+    height: 460px;
+  }
+
+  @media (max-width: 590px) {
+    height: 440px;
+  }
+
+  @media (max-width: 490px) {
+    height: 400px;
   }
 `;
