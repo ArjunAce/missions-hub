@@ -15,6 +15,15 @@ const StyledMissionsList = styled.div`
     display: flex;
     flex-wrap: wrap;
   }
+
+  @media (max-width: 767px) {
+    padding: 20px 0;
+
+    .list-title {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 export default StyledMissionsList;

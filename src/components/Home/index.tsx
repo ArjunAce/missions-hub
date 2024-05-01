@@ -13,6 +13,10 @@ const StyledHome = styled.div`
     width: 288px;
     padding: 32px 24px;
   }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 const Home = props => {
