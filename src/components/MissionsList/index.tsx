@@ -19,7 +19,7 @@ const MissionsList = ({ loading, setLoading }: { loading: boolean; setLoading: F
         if (db) {
           let missions = null;
 
-          if (queryParams) {
+          if (Object.keys(queryParams).length) {
             const firestoreFilter = db.getFirestoreFiltersFromParams(queryParams);
             missions = await db.getFilteredMissions(firestoreFilter);
           } else {
