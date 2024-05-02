@@ -14,7 +14,7 @@ import { Mission } from "../types/mission";
 import { Params } from "../utils";
 import { DatabaseService } from "./DatabaseServiceFactory";
 
-type FirestoreFilters = {
+export type FirestoreFilters = {
   field: string;
   operator: WhereFilterOp;
   value: any;
