@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-import ErrorBoundary from "../ErrorBoundary";
 import Filters from "../Filters";
 import MissionsList from "../MissionsList";
 import Skeleton from "./Skeleton";
@@ -25,10 +24,8 @@ const Home = (_: any) => {
   return (
     <StyledHome className="container home-container">
       {loading && <Skeleton />}
-      <ErrorBoundary>
-        <Filters loading={loading} />
-        <MissionsList loading={loading} setLoading={seLoading} />
-      </ErrorBoundary>
+      <Filters loading={loading} />
+      <MissionsList loading={loading} setLoading={seLoading} />
     </StyledHome>
   );
 };

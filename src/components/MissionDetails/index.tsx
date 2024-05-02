@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { MISSION_STATUS_LABELS } from "../../config/constants";
 import routesConfig from "../../config/routes.config";
 import { Mission } from "../../types/mission";
-import { DatabaseContext } from "../Contexts/Database";
+import { DatabaseContext } from "../../Contexts/Database";
 import StyledDetailsWrapper, { StyledDescription } from "./styles";
 
 const MissionDetails = () => {

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import FirestoreService from "../../firestore";
-import { FirestoreAdapter } from "../../firestore/databaseAdapter";
+import FirestoreService from "../firestore";
+import { FirestoreAdapter } from "../firestore/databaseAdapter";
 
 export const DatabaseContext = createContext<undefined | FirestoreService>(undefined);
 
@@ -9,7 +9,9 @@ const DatabaseProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const dbAdapter = new FirestoreAdapter();
     setDatabase(dbAdapter.connect());
-    return dbAdapter.disconnect;
+    return () => {
+      dbAdapter.disconnect();
+    };
   }, []);
 
   return <DatabaseContext.Provider value={database}>{children}</DatabaseContext.Provider>;

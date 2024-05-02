@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, deleteApp, FirebaseApp } from "firebase/app";
 import {
   Firestore,
   WhereFilterOp,
@@ -20,6 +20,7 @@ type FirestoreFilters = {
 }[];
 
 class FirestoreService {
+  private app: FirebaseApp;
   private db: Firestore;
   private COLLECTION_NAME: string = "missions";
 
@@ -36,10 +37,8 @@ class FirestoreService {
       measurementId: "G-BRJ420R7KL",
     };
 
-    const app = initializeApp(firebaseConfig);
-
-    // Get a reference to the Firestore database service
-    this.db = getFirestore(app);
+    this.app = initializeApp(firebaseConfig);
+    this.db = getFirestore(this.app);
   }
 
   async getAllMissions(): Promise<Mission[]> {
@@ -114,6 +113,10 @@ class FirestoreService {
       });
     }
     return filters;
+  };
+
+  closeConnection = () => {
+    deleteApp(this.app);
   };
 }
 

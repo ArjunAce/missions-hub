@@ -2,7 +2,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router";
 import { MISSION_STATUS, Mission } from "../../types/mission";
 import { decodeParams } from "../../utils";
-import { DatabaseContext } from "../Contexts/Database";
+import { DatabaseContext } from "../../Contexts/Database";
 import MissionCard from "../MissionCard";
 import StyledMissionsList from "./styles";
 

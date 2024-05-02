@@ -6,11 +6,20 @@ interface DatabaseAdapter {
 }
 
 export class FirestoreAdapter implements DatabaseAdapter {
+  private firestoreSvc: FirestoreService | null;
+
+  constructor() {
+    this.firestoreSvc = null;
+  }
+
   connect() {
-    return new FirestoreService();
+    this.firestoreSvc = new FirestoreService();
+    return this.firestoreSvc;
   }
 
   disconnect() {
-    // Disconnect Firestore
+    if (this.firestoreSvc) {
+      this.firestoreSvc.closeConnection();
+    }
   }
 }
