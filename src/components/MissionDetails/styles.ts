@@ -28,12 +28,16 @@ export default styled.section<{ bgImg: string }>`
     .back-container {
       position: relative;
 
-      a {
+      button {
         width: 20px;
         height: 20px;
         display: block;
         background-image: url("${backImg}");
         background-size: cover;
+        background-color: #0000;
+        outline: none;
+        border: none;
+        cursor: pointer;
       }
     }
 

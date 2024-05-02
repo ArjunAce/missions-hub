@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { MISSION_STATUS_LABELS } from "../../config/constants";
-import routesConfig from "../../config/routes.config";
-import { Mission } from "../../types/mission";
 import { DatabaseContext } from "../../Contexts/Database";
+import { MISSION_STATUS_LABELS } from "../../config/constants";
+import { Mission } from "../../types/mission";
 import StyledDetailsWrapper, { StyledDescription } from "./styles";
 
 const MissionDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [mission, setMission] = useState<Mission | null>(null);
   const db = useContext(DatabaseContext)!;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getMissionDetails = async () => {
@@ -55,7 +55,7 @@ const MissionDetails = () => {
         <div className="hero-image-bg">
           <div className="overlay"></div>
           <div className="container back-container">
-            <Link to={routesConfig.missions}></Link>
+            <button onClick={() => navigate(-1)}></button>
           </div>
           <div className="container key-details">
             <h1>{mission.name}</h1>
