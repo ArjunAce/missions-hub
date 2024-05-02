@@ -19,12 +19,17 @@ type FirestoreFilters = {
   value: any;
 }[];
 
+let firestoreInstanceCreated: boolean = false;
+
 class FirestoreService {
   private app: FirebaseApp;
   private db: Firestore;
   private COLLECTION_NAME: string = "missions";
 
   constructor() {
+    if (firestoreInstanceCreated) {
+      throw new Error("Attempt to create multiple objects of a Singleton (FirestoreService).");
+    }
     // Will be read from .env or CI/CD vars
     const firebaseConfig = {
       apiKey: "AIzaSyCi7TamCJG1I0Tg4WHn0jSu_6maTj6jcT4",
@@ -116,6 +121,7 @@ class FirestoreService {
   };
 
   closeConnection = () => {
+    firestoreInstanceCreated = false;
     deleteApp(this.app);
   };
 }
