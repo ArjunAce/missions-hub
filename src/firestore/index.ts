@@ -1,4 +1,4 @@
-import { initializeApp, deleteApp, FirebaseApp } from "firebase/app";
+import { FirebaseApp, deleteApp, initializeApp } from "firebase/app";
 import {
   Firestore,
   WhereFilterOp,
@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { Mission } from "../types/mission";
 import { Params } from "../utils";
+import { DatabaseService } from "./DatabaseServiceFactory";
 
 type FirestoreFilters = {
   field: string;
@@ -21,7 +22,7 @@ type FirestoreFilters = {
 
 let firestoreInstanceCreated: boolean = false;
 
-class FirestoreService {
+class FirestoreService implements DatabaseService {
   private app: FirebaseApp;
   private db: Firestore;
   private COLLECTION_NAME: string = "missions";
@@ -46,6 +47,8 @@ class FirestoreService {
     this.db = getFirestore(this.app);
   }
 
+  connect(): void {}
+
   async getAllMissions(): Promise<Mission[]> {
     try {
       const querySnapshot = await getDocs(collection(this.db, this.COLLECTION_NAME));
@@ -59,6 +62,7 @@ class FirestoreService {
       throw error;
     }
   }
+
   async getMissionById(id: string): Promise<Mission> {
     try {
       const docRef = doc(this.db, this.COLLECTION_NAME, id);
@@ -120,7 +124,7 @@ class FirestoreService {
     return filters;
   };
 
-  closeConnection = () => {
+  disconnect = () => {
     firestoreInstanceCreated = false;
     deleteApp(this.app);
   };

@@ -1,16 +1,15 @@
 import { createContext, useEffect, useState } from "react";
-import FirestoreService from "../firestore";
-import { FirestoreAdapter } from "../firestore/databaseAdapter";
+import DatabaseServiceFactory, { DATABASES, DatabaseService } from "../firestore/DatabaseServiceFactory";
 
-export const DatabaseContext = createContext<undefined | FirestoreService>(undefined);
+export const DatabaseContext = createContext<undefined | DatabaseService>(undefined);
 
 const DatabaseProvider = ({ children }: { children: React.ReactNode }) => {
-  const [database, setDatabase] = useState<FirestoreService>();
+  const [database, setDatabase] = useState<DatabaseService>();
   useEffect(() => {
-    const dbAdapter = new FirestoreAdapter();
-    setDatabase(dbAdapter.connect());
+    const dbService = DatabaseServiceFactory.createDatabaseService(DATABASES.FIRESTORE);
+    setDatabase(dbService);
     return () => {
-      dbAdapter.disconnect();
+      dbService.disconnect();
     };
   }, []);
 
