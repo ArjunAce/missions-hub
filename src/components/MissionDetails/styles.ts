@@ -32,7 +32,7 @@ export default styled.section<{ bgImg: string }>`
         width: 20px;
         height: 20px;
         display: block;
-        background-image: url(${backImg});
+        background-image: url("${backImg}");
         background-size: cover;
       }
     }
