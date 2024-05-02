@@ -19,7 +19,7 @@ const StyledHome = styled.div`
   }
 `;
 
-const Home = props => {
+const Home = (_: any) => {
   const [loading, seLoading] = useState<boolean>(true);
 
   return (

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import routesConfig from "../../config/routes.config";
 
-const About = props => {
+const About = (_: any) => {
   return (
     <section className="container">
       <div>This is a sample about page.</div>

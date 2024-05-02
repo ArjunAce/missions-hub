@@ -65,6 +65,7 @@ export const decodeParams = (queryString: string): Params => {
       const keys = decodedKey.split(/\[|\]/).filter(Boolean);
       let obj = params;
       keys.slice(0, -1).forEach(key => {
+        //@ts-expect-error
         obj = obj[key] = obj[key] || (keys[keys.length - 1] === "" ? [] : {});
       });
       const lastKey = keys[keys.length - 1];

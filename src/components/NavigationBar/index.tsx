@@ -3,7 +3,7 @@ import StyledNavBar from "./styles.ts";
 import logo from "./../../assets/logo.svg";
 import RoutesConfig from "../../config/routes.config.ts";
 
-const NavigationBar = props => {
+const NavigationBar = (_: any) => {
   return (
     <StyledNavBar>
       <div className="container navigation-container">
