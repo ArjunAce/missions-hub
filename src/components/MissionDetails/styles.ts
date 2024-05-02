@@ -69,10 +69,39 @@ export default styled.section<{ bgImg: string }>`
       }
     }
   }
+
+  @media (max-width: 540px) {
+    .hero-image-bg {
+      height: 300px;
+      padding-bottom: 24px;
+
+      h1 {
+        font-size: 34px;
+        margin-bottom: 4px;
+      }
+
+      h3 {
+        font-size: 22px;
+      }
+
+      .details-wrapper {
+        font-size: 15px;
+
+        .detail {
+          margin-bottom: 4px;
+        }
+
+        .label {
+          width: 124px;
+        }
+      }
+    }
+  }
 `;
 
 export const StyledDescription = styled.section`
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   .desc-title {
     font-size: 32px;
@@ -94,6 +123,29 @@ export const StyledDescription = styled.section`
       height: 500px;
       display: block;
       margin: 0 auto 32px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .desc-title {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .description-wrap {
+      p {
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+
+      img {
+        width: 260px;
+        height: 260px;
+        margin: 0 auto 20px;
+      }
     }
   }
 `;
